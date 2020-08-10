@@ -20,30 +20,19 @@ type CastsInf struct {
 
 func main()  {
 
-  // casts := []string{"Johnny Galecki","Jim Parsons","Kaley Cuoco","Simon Helberg","Kunal Nayyar","Mayim Bialik","Melissa Rauch"}
+  casts := []string{"Johnny Galecki","Jim Parsons","Kaley Cuoco","Simon Helberg","Kunal Nayyar","Mayim Bialik","Melissa Rauch"}
   t, err := template.ParseFiles("hello.gohtml")
   if err != nil{
     panic(err)
   }
 
-  data := User{
-    Name: "Amy Farrah Fowler",
-    Dog: DogInf{
-      Name: "Cinnamon",
-      Age: 3,
-    },
+  castsInf := CastsInf{
+    CastsName: casts,
   }
-  // castsInf := CastsInf{
-  //   CastsName: casts,
-  // }
 
-  err = t.Execute(os.Stdout,data)
+  err = t.Execute(os.Stdout,castsInf)
   if err != nil{
     panic(err)
   }
-  // err = t.Execute(os.Stdout,castsInf)
-  // if err != nil{
-  //   panic(err)
-  // }
-  // fmt.Println(casts)
+  
 }

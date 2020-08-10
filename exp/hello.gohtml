@@ -1,1 +1,9 @@
-<h1>Hello, {{.Name}}. This is my dog, It's name is {{.Dog.Name}} and {{.Dog.Age}} years old</h1>
+<body>
+  <p>
+    <ul>
+    {{range .CastsName}}
+      {{.}}
+    {{end}}
+    </ul>
+  </p>
+</body>
