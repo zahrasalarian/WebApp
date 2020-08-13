@@ -3,14 +3,18 @@ package main
 import (
   "fmt"
   "net/http"
+  "html/template"
   // "github.com/julienschmidt/httprouter"
   "github.com/gorilla/mux"
 )
 
+var homeTemplate *template.Template
 
 func home(w http.ResponseWriter, r *http.Request)  {
   w.Header().Set("Content-Type", "text/html")
-  fmt.Fprint(w, "<h1>Hello</h1>")
+  if err := homeTemplate.Execute(w, nil); err != nil{
+
+  }
 }
 
 func tbbt(w http.ResponseWriter, r *http.Request)  {
@@ -19,6 +23,11 @@ func tbbt(w http.ResponseWriter, r *http.Request)  {
 }
 
 func main()  {
+  var err error
+  homeTemplate, err = template.ParseFiles("views/home.gohtml")
+  if err != nil{
+    panic(err)
+  }
   r := mux.NewRouter()
   r.HandleFunc("/", home)
   r.HandleFunc("/tbbt", tbbt)
